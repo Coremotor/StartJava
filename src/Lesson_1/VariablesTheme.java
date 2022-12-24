@@ -1,13 +1,12 @@
 package Lesson_1;
 
+import Helpers.PrintTitle;
+
 public class VariablesTheme {
 
     public static void main(String[] args) {
         // 1
-        System.out.println("""
-                \u001B[32m
-                1. Вывод значений переменных на консоль
-                \u001B[0m""");
+        PrintTitle.printTitle("1. Вывод значений переменных на консоль");
 
         byte ssdSize = 64;
         short ramSize = 1024;
@@ -28,10 +27,7 @@ public class VariablesTheme {
         System.out.println("is a mega computer: " + isMegaComputer);
 
         // 2
-        System.out.println("""
-                \u001B[32m
-                2. Расчет стоимости товара со скидкой
-                \u001B[0m""");
+        PrintTitle.printTitle("2. Расчет стоимости товара со скидкой");
 
         int penPrice = 100;
         int bookPrice = 200;
@@ -43,10 +39,7 @@ public class VariablesTheme {
         System.out.println("Итоговая сума с учетом скидки: " + discountPrice + " руб");
 
         // 3
-        System.out.println("""
-                \u001B[32m
-                3. Вывод слова JAVA
-                \u001B[0m""");
+        PrintTitle.printTitle("3. Вывод слова JAVA");
 
         System.out.println("   J    a  v     v  a      ");
         System.out.println("   J   a a  v   v  a a     ");
@@ -54,10 +47,7 @@ public class VariablesTheme {
         System.out.println(" JJ  a     a  V  a     a   ");
 
         // 4
-        System.out.println("""
-                \u001B[32m
-                4. Вывод min и max значений целых числовых типов
-                \u001B[0m""");
+        PrintTitle.printTitle("4. Вывод min и max значений целых числовых типов");
 
         byte b = Byte.MAX_VALUE;
         short s = Short.MAX_VALUE;
@@ -81,10 +71,7 @@ public class VariablesTheme {
         System.out.println("max long - 1 = " + (--l));
 
         // 5
-        System.out.println("""
-                \u001B[32m
-                5. Перестановка значений переменных
-                \u001B[0m""");
+        PrintTitle.printTitle("5. Перестановка значений переменных");
 
         int num1 = 2;
         int num2 = 5;
@@ -106,11 +93,7 @@ public class VariablesTheme {
         System.out.println("Перестановка с помощью побитовой операции: num1 = " + num1 + ", num2 = " + num2);
 
         // 6
-        System.out.println("""
-                \u001B[32m
-                6. Вывод символов и их кодов
-                \u001B[0m""");
-
+        PrintTitle.printTitle("6. Вывод символов и их кодов");
 
         char sharp = '#';
         char ampersand = '&';
@@ -131,10 +114,7 @@ public class VariablesTheme {
         System.out.println(underlineCode + ": " + underline);
 
         // 7
-        System.out.println("""
-                \u001B[32m
-                7. Вывод в консоль ASCII-арт Дюка
-                \u001B[0m""");
+        PrintTitle.printTitle("7. Вывод в консоль ASCII-арт Дюка");
 
         char slash = '/';
         char backSlash = '\\';
@@ -150,10 +130,7 @@ public class VariablesTheme {
         );
 
         // 8
-        System.out.println("""
-                \u001B[32m
-                8. Вывод количества сотен, десятков и единиц числа
-                \u001B[0m""");
+        PrintTitle.printTitle("8. Вывод количества сотен, десятков и единиц числа");
 
         int number = 123;
 
@@ -167,10 +144,7 @@ public class VariablesTheme {
         System.out.println("Произведение его чисел = " + (hundreds * dozens * units));
 
         // 9
-        System.out.println("""
-                \u001B[32m
-                9. Вывод времени
-                \u001B[0m""");
+        PrintTitle.printTitle("9. Вывод времени");
 
         int seconds = 86399;
 
