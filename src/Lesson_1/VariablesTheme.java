@@ -38,9 +38,9 @@ public class VariablesTheme {
         int discount = 11;
 
         int discountSum = (penPrice + bookPrice) * discount / 100;
-        int totalPrice = (penPrice + bookPrice) - discountSum;
+        int discountPrice = (penPrice + bookPrice) - discountSum;
         System.out.println("Сумма скидки: " + discountSum + " руб");
-        System.out.println("Итоговая сума с учетом скидки: " + totalPrice + " руб");
+        System.out.println("Итоговая сума с учетом скидки: " + discountPrice + " руб");
 
         // 3
         System.out.println("""
@@ -111,16 +111,24 @@ public class VariablesTheme {
                 6. Вывод символов и их кодов
                 \u001B[0m""");
 
-        char q = '#';
-        char w = '&';
-        char e = '@';
-        char r = '^';
-        char t = '_';
-        System.out.println("35: " + q);
-        System.out.println("38: " + w);
-        System.out.println("64: " + e);
-        System.out.println("94: " + r);
-        System.out.println("95: " + t);
+
+        char sharp = '#';
+        char ampersand = '&';
+        char at = '@';
+        char circumflex = '^';
+        char underline = '_';
+
+        int sharpCode = sharp;
+        int ampersandCode = ampersand;
+        int atCode = at;
+        int circumflexCode = circumflex;
+        int underlineCode = underline;
+
+        System.out.println(sharpCode + ": " + sharp);
+        System.out.println(ampersandCode + ": " + ampersand);
+        System.out.println(atCode + ": " + at);
+        System.out.println(circumflexCode + ": " + circumflex);
+        System.out.println(underlineCode + ": " + underline);
 
         // 7
         System.out.println("""
@@ -130,17 +138,15 @@ public class VariablesTheme {
 
         char slash = '/';
         char backSlash = '\\';
-        char underscore = '_';
         char leftParenthesis = '(';
         char rightParenthesis = ')';
 
         System.out.println("    " + slash + backSlash);
         System.out.println("   " + slash + "  " + backSlash);
-        System.out.println("  " + slash + underscore + leftParenthesis + " " + rightParenthesis + backSlash);
+        System.out.println("  " + slash + underline + leftParenthesis + " " + rightParenthesis + backSlash);
         System.out.println(" " + slash + "      " + backSlash);
-        System.out.println(
-                "" + slash + underscore + underscore + underscore
-                        + underscore + slash + backSlash + underscore + underscore + backSlash
+        System.out.println("" + slash + underline + underline + underline
+                + underline + slash + backSlash + underline + underline + backSlash
         );
 
         // 8
@@ -151,14 +157,14 @@ public class VariablesTheme {
 
         int number = 123;
 
-        int x = number / 100;
-        int y = number / 10 % 10;
-        int z = number % 10;
+        int hundreds = number / 100;
+        int dozens = number / 10 % 10;
+        int units = number % 10;
 
         System.out.println("Число " + number + " содержит: \n"
-                + x + " сотен \n" + y + " десятков \n" + z + " единиц \n");
-        System.out.println("Сумма его чисел = " + (x + y + z));
-        System.out.println("Произведение его чисел = " + (x * y * z));
+                + hundreds + " сотен \n" + dozens + " десятков \n" + units + " единиц \n");
+        System.out.println("Сумма его чисел = " + (hundreds + dozens + units));
+        System.out.println("Произведение его чисел = " + (hundreds * dozens * units));
 
         // 9
         System.out.println("""
