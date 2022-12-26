@@ -1,6 +1,6 @@
 package Lesson_1;
 
-import Helpers.PrintTitle;
+import Utils.PrintTitle;
 
 import java.util.Random;
 
@@ -47,13 +47,11 @@ public class IfElseStatementTheme {
 
         String randomName = names[randomNameIndex];
 
-        char firstChairInName = randomName.charAt(0);
-        char letterM = 77;
-        char letterI = 73;
+        char capitalLetter = randomName.charAt(0);
 
-        if (firstChairInName == letterM) {
+        if (capitalLetter == 77) {
             System.out.println("Ваше имя - " + randomName + " начинается на букву М");
-        } else if (firstChairInName == letterI) {
+        } else if (capitalLetter == 73) {
             System.out.println("Ваше имя - " + randomName + " начинается на букву I");
         } else {
             System.out.println("Ваше имя - " + randomName + " и оно начинается на букву отличную от M и I");
@@ -65,12 +63,11 @@ public class IfElseStatementTheme {
         int num1 = random.nextInt(-100, 100);
         int num2 = random.nextInt(-100, 100);
 
-        boolean isNum1MoreNum2 = num1 > num2;
 
-        if (isNum1MoreNum2) {
-            System.out.println("num1 = " + num1 + "; num2 = " + num2 + "; max number = " + num1);
-        } else if (num1 == num2) {
+        if (num1 == num2) {
             System.out.println("Числа равны");
+        } else if (num1 > num2) {
+            System.out.println("num1 = " + num1 + "; num2 = " + num2 + "; max number = " + num1);
         } else {
             System.out.println("num1 = " + num1 + "; num2 = " + num2 + "; max number = " + num2);
         }
@@ -78,20 +75,20 @@ public class IfElseStatementTheme {
         //3
         PrintTitle.printTitle("3. Проверка числа");
 
-        if (num1 != 0) {
+        System.out.println("Число: " + num1);
 
+        if (num1 != 0) {
             if (num1 % 2 == 0) {
-                System.out.println("Число " + num1 + " - четное");
+                System.out.println(" - четное");
             } else {
-                System.out.println("Число " + num1 + " - не четное");
+                System.out.println(" - не четное");
             }
 
             if (num1 > 0) {
-                System.out.println("Число " + num1 + " - положительное");
+                System.out.println(" - положительное");
             } else {
-                System.out.println("Число " + num1 + " - отрицательное");
+                System.out.println(" - отрицательное");
             }
-
         } else {
             System.out.println("Число равно 0");
         }
@@ -103,25 +100,25 @@ public class IfElseStatementTheme {
         int num4 = random.nextInt(100, 999);
 
         int hundredsNum3 = num3 / 100;
-        int dozensNum3 = num3 / 10 % 10;
-        int unitsNum3 = num3 % 10;
+        int tensNum3 = num3 / 10 % 10;
+        int onesNum3 = num3 % 10;
 
         int hundredsNum4 = num4 / 100;
-        int dozensNum4 = num4 / 10 % 10;
-        int unitsNum4 = num4 % 10;
+        int tensNum4 = num4 / 10 % 10;
+        int onesNum4 = num4 % 10;
 
         System.out.println("Num3 = " + num3 + "; num4 = " + num4);
 
-        if (hundredsNum3 != hundredsNum4 && dozensNum3 != dozensNum4 && unitsNum3 != unitsNum4) {
+        if (hundredsNum3 != hundredsNum4 && tensNum3 != tensNum4 && onesNum3 != onesNum4) {
             System.out.println("Нет совпадений в разрядах");
         }
 
-        if (unitsNum3 == unitsNum4) {
-            System.out.println("Совпадение в I разряде: " + unitsNum3 + " = " + unitsNum4);
+        if (onesNum3 == onesNum4) {
+            System.out.println("Совпадение в I разряде: " + onesNum3 + " = " + onesNum4);
         }
 
-        if (dozensNum3 == dozensNum4) {
-            System.out.println("Совпадение во II разряде: " + dozensNum3 + " = " + dozensNum4);
+        if (tensNum3 == tensNum4) {
+            System.out.println("Совпадение во II разряде: " + tensNum3 + " = " + tensNum4);
         }
 
         if (hundredsNum3 == hundredsNum4) {
@@ -149,17 +146,12 @@ public class IfElseStatementTheme {
         PrintTitle.printTitle("6. Подсчет суммы вклада и начисленных банком %");
 
         int deposit = 300_000;
-
-        byte percent = 1;
+        byte percent = 5;
 
         if (deposit > 300_000) {
             percent = 10;
-        }
-        if (deposit >= 100_000 && deposit <= 300_000) {
+        } else if (deposit >= 100_000 && deposit <= 300_000) {
             percent = 7;
-        }
-        if (deposit < 100_000) {
-            percent = 5;
         }
 
         int income = (deposit * percent) / 100;
@@ -174,33 +166,23 @@ public class IfElseStatementTheme {
         byte historyPoints = 59;
         byte programmingPoints = 91;
 
-        byte historyGrade = 1;
-        byte programmingGrade = 1;
+        byte historyGrade = 5;
+        byte programmingGrade = 5;
 
         if (historyPoints <= 60) {
             historyGrade = 2;
-        }
-        if (historyPoints > 60) {
+        } else if (historyPoints > 60) {
             historyGrade = 3;
-        }
-        if (historyPoints > 73) {
+        } else if (historyPoints > 73) {
             historyGrade = 4;
-        }
-        if (historyPoints > 91) {
-            historyGrade = 5;
         }
 
         if (programmingPoints <= 60) {
             programmingGrade = 2;
-        }
-        if (programmingPoints > 60) {
+        } else if (programmingPoints > 60) {
             programmingGrade = 3;
-        }
-        if (programmingPoints > 73) {
+        } else if (programmingPoints > 73) {
             programmingGrade = 4;
-        }
-        if (programmingPoints > 91) {
-            programmingGrade = 5;
         }
 
         System.out.println(historyGrade + " по истории");
@@ -228,11 +210,11 @@ public class IfElseStatementTheme {
         int numberOfBanknotes_1_inBank = 50;
 
         int hundredsInAmount = amount / 100;
-        int dozensInAmount = amount / 10 % 10;
+        int tensInAmount = amount / 10 % 10;
 
         int countHundreds;
-        int countDozens;
-        int countUnits;
+        int countTens;
+        int countOnes;
 
         if (numberOfBanknotes_100_inBank >= hundredsInAmount) {
             countHundreds = hundredsInAmount;
@@ -241,28 +223,28 @@ public class IfElseStatementTheme {
         }
         amount -= countHundreds * 100;
 
-        if (numberOfBanknotes_10_inBank >= dozensInAmount) {
-            countDozens = dozensInAmount;
+        if (numberOfBanknotes_10_inBank >= tensInAmount) {
+            countTens = tensInAmount;
         } else {
-            countDozens = numberOfBanknotes_10_inBank;
+            countTens = numberOfBanknotes_10_inBank;
         }
-        amount -= countDozens * 10;
+        amount -= countTens * 10;
 
         if (numberOfBanknotes_1_inBank >= amount) {
-            countUnits = amount;
+            countOnes = amount;
         } else {
-            countUnits = numberOfBanknotes_1_inBank;
+            countOnes = numberOfBanknotes_1_inBank;
         }
-        amount -= countUnits;
+        amount -= countOnes;
 
         if (amount > 0) {
             System.out.println("не достаточно для выдачи: " + amount + " USD");
         }
 
         System.out.println("100 USD: " + countHundreds);
-        System.out.println("10 USD: " + countDozens);
-        System.out.println("1 USD: " + countUnits);
+        System.out.println("10 USD: " + countTens);
+        System.out.println("1 USD: " + countOnes);
 
-        System.out.println("Сумма к выдаче: " + (100 * countHundreds + 10 * countDozens + countUnits) + " USD");
+        System.out.println("Сумма к выдаче: " + (100 * countHundreds + 10 * countTens + countOnes) + " USD");
     }
 }

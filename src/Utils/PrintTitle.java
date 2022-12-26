@@ -1,4 +1,4 @@
-package Helpers;
+package Utils;
 
 public class PrintTitle {
     public static void printTitle(String title) {

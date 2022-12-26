@@ -1,6 +1,6 @@
 package Lesson_1;
 
-import Helpers.PrintTitle;
+import Utils.PrintTitle;
 
 public class VariablesTheme {
 
