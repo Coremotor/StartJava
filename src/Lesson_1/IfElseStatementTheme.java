@@ -49,9 +49,9 @@ public class IfElseStatementTheme {
 
         char capitalLetter = randomName.charAt(0);
 
-        if (capitalLetter == 77) {
+        if (capitalLetter == 'M') {
             System.out.println("Ваше имя - " + randomName + " начинается на букву М");
-        } else if (capitalLetter == 73) {
+        } else if (capitalLetter == 'I') {
             System.out.println("Ваше имя - " + randomName + " начинается на букву I");
         } else {
             System.out.println("Ваше имя - " + randomName + " и оно начинается на букву отличную от M и I");
@@ -62,7 +62,6 @@ public class IfElseStatementTheme {
 
         int num1 = random.nextInt(-100, 100);
         int num2 = random.nextInt(-100, 100);
-
 
         if (num1 == num2) {
             System.out.println("Числа равны");
@@ -111,18 +110,18 @@ public class IfElseStatementTheme {
 
         if (hundredsNum3 != hundredsNum4 && tensNum3 != tensNum4 && onesNum3 != onesNum4) {
             System.out.println("Нет совпадений в разрядах");
-        }
+        } else {
+            if (onesNum3 == onesNum4) {
+                System.out.println("Совпадение в I разряде: " + onesNum3 + " = " + onesNum4);
+            }
 
-        if (onesNum3 == onesNum4) {
-            System.out.println("Совпадение в I разряде: " + onesNum3 + " = " + onesNum4);
-        }
+            if (tensNum3 == tensNum4) {
+                System.out.println("Совпадение во II разряде: " + tensNum3 + " = " + tensNum4);
+            }
 
-        if (tensNum3 == tensNum4) {
-            System.out.println("Совпадение во II разряде: " + tensNum3 + " = " + tensNum4);
-        }
-
-        if (hundredsNum3 == hundredsNum4) {
-            System.out.println("Совпадение в III разряде: " + hundredsNum3 + " = " + hundredsNum4);
+            if (hundredsNum3 == hundredsNum4) {
+                System.out.println("Совпадение в III разряде: " + hundredsNum3 + " = " + hundredsNum4);
+            }
         }
 
         //5
@@ -205,9 +204,9 @@ public class IfElseStatementTheme {
 
         int amount = 567;
 
-        int numberOfBanknotes_100_inBank = 10;
-        int numberOfBanknotes_10_inBank = 5;
-        int numberOfBanknotes_1_inBank = 50;
+        int numberOfBanknotes100InBank = 10;
+        int numberOfBanknotes10InBank = 5;
+        int numberOfBanknotes1InBank = 50;
 
         int hundredsInAmount = amount / 100;
         int tensInAmount = amount / 10 % 10;
@@ -216,24 +215,24 @@ public class IfElseStatementTheme {
         int countTens;
         int countOnes;
 
-        if (numberOfBanknotes_100_inBank >= hundredsInAmount) {
+        if (numberOfBanknotes100InBank >= hundredsInAmount) {
             countHundreds = hundredsInAmount;
         } else {
-            countHundreds = numberOfBanknotes_100_inBank;
+            countHundreds = numberOfBanknotes100InBank;
         }
         amount -= countHundreds * 100;
 
-        if (numberOfBanknotes_10_inBank >= tensInAmount) {
+        if (numberOfBanknotes10InBank >= tensInAmount) {
             countTens = tensInAmount;
         } else {
-            countTens = numberOfBanknotes_10_inBank;
+            countTens = numberOfBanknotes10InBank;
         }
         amount -= countTens * 10;
 
-        if (numberOfBanknotes_1_inBank >= amount) {
+        if (numberOfBanknotes1InBank >= amount) {
             countOnes = amount;
         } else {
-            countOnes = numberOfBanknotes_1_inBank;
+            countOnes = numberOfBanknotes1InBank;
         }
         amount -= countOnes;
 

@@ -8,21 +8,21 @@ public class CyclesTheme {
         //1
         PrintTitle.printTitle("1. Подсчет суммы четных и нечетных чисел");
 
-        int sumOfEvenNumbers = 0;
-        int sumOfOddNumbers = 0;
+        int sumEven = 0;
+        int sumOdd = 0;
         byte startOfSegment = -10;
 
         do {
             if (startOfSegment % 2 == 0) {
-                sumOfEvenNumbers += startOfSegment;
+                sumEven += startOfSegment;
             } else {
-                sumOfOddNumbers += startOfSegment;
+                sumOdd += startOfSegment;
             }
             startOfSegment++;
         } while (startOfSegment < 22);
 
         System.out.println("В промежутке [-10, 21] сумма четных чисел = "
-                + sumOfEvenNumbers + ", а нечетных = " + sumOfOddNumbers);
+                + sumEven + ", а нечетных = " + sumOdd);
 
         //2
         PrintTitle.printTitle("2. Вывод чисел в интервале (min и max) в порядке убывания");
@@ -30,40 +30,41 @@ public class CyclesTheme {
         byte num1 = 10;
         byte num2 = 5;
         byte num3 = -1;
-        byte maxInt;
-        byte minInt;
+        byte max;
+        byte min;
 
         if (num1 > num2) {
-            maxInt = num1 > num3 ? num1 : num3;
+            max = num1 > num3 ? num1 : num3;
         } else {
-            maxInt = num2 > num3 ? num2 : num3;
+            max = num2 > num3 ? num2 : num3;
         }
 
         if (num1 < num2) {
-            minInt = num1;
+            min = num1;
         } else {
-            minInt = num2;
+            min = num2;
         }
 
-        if (minInt > num3) {
-            minInt = num3;
+        if (min > num3) {
+            min = num3;
         }
 
-        for (int i = maxInt - 1; i > minInt + 1; i--) {
-            System.out.println(i);
+        for (int i = max - 1; i > min; i--) {
+            System.out.print(i + " ");
         }
 
         //3
         PrintTitle.printTitle("3. Вывод реверсивного числа и суммы его цифр");
 
-        int number = 1234;
-        int sum = 0;
+        int initialNumber = 1234, sum = 0, remainder;
+        int number = initialNumber;
 
         System.out.print("Число в обратном порядке: ");
 
         while (number > 0) {
-            System.out.print(number % 10);
-            sum += number % 10;
+            remainder = number % 10;
+            System.out.print(remainder);
+            sum += remainder;
             number /= 10;
         }
 
@@ -72,36 +73,39 @@ public class CyclesTheme {
         //4
         PrintTitle.printTitle("4. Вывод чисел на консоль в несколько строк");
 
-        int count = 0;
-        int numberCharactersInLine = 5;
+        int count = 0, numberIntPerLine = 5;
 
         for (int i = 1; i < 24; i += 2) {
-            count += 1;
-            System.out.printf("%" + numberCharactersInLine + "s",
-                    i + (count % numberCharactersInLine == 0 ? "\n" : " "));
-        }
+            count++;
+            System.out.printf("%3d", i);
 
-        int numberOfMissingCharacters = numberCharactersInLine - count % numberCharactersInLine;
+            if (count % numberIntPerLine == 0) {
+                System.out.println();
+            }
+         }
+
+        int numberOfMissingCharacters = numberIntPerLine - count % numberIntPerLine;
         for (int i = 0; i < numberOfMissingCharacters; i++) {
-            System.out.printf("%" + numberCharactersInLine + "s", "0 ");
+            System.out.printf("%3d", 0);
         }
 
         //5
         PrintTitle.printTitle("5. Проверка количества двоек на четность/нечетность");
 
-        int initialNumber = 3242592;
+        initialNumber = 324259;
         number = initialNumber;
-        count = 0;
+
+        int countTwos = 0;
 
         while (number > 0) {
             if (number % 10 == 2) {
-                count += 1;
+                countTwos++;
             }
             number /= 10;
         }
 
-        System.out.println("Число: " + initialNumber + " содержит: " + count
-                + (count % 2 == 0 ? " (четное)" : " (не четное)") + " число двоек");
+        System.out.println("Число: " + initialNumber + " содержит: " + countTwos
+                + (countTwos % 2 == 0 ? " (четное)" : " (не четное)") + " число двоек");
 
         //6
         PrintTitle.printTitle("6. Отображение фигур в консоли");
@@ -127,7 +131,7 @@ public class CyclesTheme {
         }
 
         //6.3
-        int max = 3;
+        max = 3;
         i = 1;
 
         do {
@@ -188,7 +192,7 @@ public class CyclesTheme {
         //8
         PrintTitle.printTitle("8. Проверка, является ли число палиндромом");
 
-        int num = 1234321, reversedNum = 0, remainder;
+        int num = 1234321, reversedNum = 0;
 
         int originalNum = num;
 
