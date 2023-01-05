@@ -3,28 +3,29 @@ package Lesson_1;
 public class Calculator {
 
     public static void main(String[] args) {
-        char action = '^';
+        char action = '/';
 
-        int a = 5, b = 2, result = 0;
-        double resultDivision = 0;
+        double a = 5, b = 2;
 
-        switch (action) {
-            case '+' -> result = a + b;
-            case '-' -> result = a - b;
-            case '*' -> result = a * b;
-            case '/' -> resultDivision = (double) a / (double) b;
-            case '^' -> result = exponentiation(a, b);
-            case '%' -> result = a % b;
-        }
+        double result = switch (action) {
+            case '+' -> a + b;
+            case '-' -> a - b;
+            case '*' -> a * b;
+            case '/' -> a / b;
+            case '^' -> pow(a, b);
+            case '%' -> a % b;
+            default -> throw new IllegalStateException("Неопознанное действие: " + action);
+        };
 
-        System.out.println(a + " " + action + " " + b + " = " + (action == '/' ? resultDivision : result));
+        System.out.println(a + " " + action + " " + b + " = "
+                + (result % 1 == 0 ? (int) result : result));
     }
 
-    private static int exponentiation(int a, int b) {
-        int temp = 1;
+    private static int pow(double a, double b) {
+        int result = 1;
         for (int i = 1; i <= b; i++) {
-            temp = temp * a;
+            result *= a;
         }
-        return temp;
+        return result;
     }
 }

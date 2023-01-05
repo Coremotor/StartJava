@@ -14,7 +14,7 @@ public class Game {
             } else {
                 System.out.println("Число " + humanNumber + " меньше, чем загадал компьютер");
             }
-        } while (computerNumber > humanNumber || computerNumber < humanNumber);
+        } while (computerNumber != humanNumber);
 
         System.out.println("Вы победили!!!");
     }

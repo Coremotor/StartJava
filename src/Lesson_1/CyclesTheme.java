@@ -33,14 +33,14 @@ public class CyclesTheme {
         byte min = num2;
         byte max = num1;
 
-        if(num1 < num2) {
+        if (num1 < num2) {
             max = num2;
             min = num1;
         }
-        if(min > num3) {
+        if (min > num3) {
             min = num3;
         }
-        if(max < num3) {
+        if (max < num3) {
             max = num3;
         }
 
@@ -126,51 +126,32 @@ public class CyclesTheme {
         }
 
         //6.3
-        max = 3;
+        int numberOfCharactersPerLine = 1;
         numberOfLines = 1;
-
         do {
-            int numberOfCharactersPerLine = numberOfLines;
             do {
                 System.out.print("$");
-                numberOfCharactersPerLine--;
-            } while (numberOfCharactersPerLine > 0);
-
+                numberOfCharactersPerLine++;
+            } while (numberOfCharactersPerLine <= (numberOfLines <= 3 ? numberOfLines : 5 - numberOfLines + 1));
             numberOfLines++;
+            numberOfCharactersPerLine = 1;
             System.out.println();
-        } while (numberOfLines <= max);
-
-
-        numberOfLines = max - 1;
-
-        do {
-            int numberOfCharactersPerLine = numberOfLines + 1;
-            do {
-                numberOfCharactersPerLine--;
-                System.out.print("$");
-            } while (numberOfCharactersPerLine > 1);
-
-            numberOfLines--;
-            System.out.println();
-        } while (numberOfLines >= 1);
+        } while (numberOfLines <= 5);
 
         //7
         PrintTitle.printTitle("7. Отображение ASCII-символов");
 
-        System.out.printf("%5s", "Dec");
-        System.out.printf("%12s", "Char\n");
+        System.out.printf("%5s%11s", "Dec", "Char\n");
 
         for (int j = 1; j < 48; j++) {
             if (j % 2 != 0) {
-                System.out.printf("%5s %10c", j, j);
-                System.out.println();
+                System.out.printf("%5s%10c%n", j, j);
             }
         }
 
         for (int j = 97; j < 123; j++) {
             if (j % 2 == 0) {
-                System.out.printf("%5s %10c", j, j);
-                System.out.println();
+                System.out.printf("%5s%10c%n", j, j);
             }
         }
 
@@ -195,35 +176,26 @@ public class CyclesTheme {
         PrintTitle.printTitle("9. Определение, является ли число счастливым");
 
         initialNumber = 123123;
-        int sumLeftHalf = 0, sumRightHalf = 0;
         copyInitialNumber = initialNumber;
+        int sumLeftHalf = 0, sumRightHalf, n = 0;
 
-        int reversedNumber = 0;
-        while (copyInitialNumber != 0) {
-            reversedNumber = reversedNumber * 10 + copyInitialNumber % 10;
-            copyInitialNumber /= 10;
+        for (sumRightHalf = 0; copyInitialNumber > 0; copyInitialNumber /= 10) {
+            n++;
+            if (n <= 3) {
+                sumRightHalf = sumRightHalf + copyInitialNumber % 10;
+            } else {
+                sumLeftHalf = sumLeftHalf + copyInitialNumber % 10;
+            }
         }
 
-        System.out.print("Сумма цифр ");
-        for (int j = 0; j < 3; j++) {
-            int remainder = reversedNumber % 10;
-            sumLeftHalf += remainder;
-            System.out.print(remainder);
-            reversedNumber = reversedNumber / 10;
-        }
-        System.out.println(" = " + sumLeftHalf);
+        System.out.println("Сумма цифр abc = " + sumLeftHalf + "\nСумма цифр def = " + sumRightHalf);
 
-        System.out.print("Сумма цифр ");
-        for (int j = 3; j < 6; j++) {
-            int remainder = reversedNumber % 10;
-            sumRightHalf += remainder;
-            System.out.print(remainder);
-            reversedNumber = reversedNumber / 10;
+        System.out.print("Число " + initialNumber);
+        if (sumLeftHalf == sumRightHalf) {
+            System.out.println(" является счастливым");
+        } else {
+            System.out.println(" не является счастливым");
         }
-        System.out.println(" = " + sumRightHalf);
-
-        System.out.println("Число " + initialNumber + " является " +
-                (sumLeftHalf == sumRightHalf ? "счастливым" : "не счастливым"));
 
         //10
         PrintTitle.printTitle("10. Вывод таблицы умножения Пифагора");
