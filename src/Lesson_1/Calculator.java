@@ -17,8 +17,12 @@ public class Calculator {
             default -> throw new IllegalStateException("Неопознанное действие: " + action);
         };
 
-        System.out.println(a + " " + action + " " + b + " = "
-                + (result % 1 == 0 ? (int) result : result));
+        System.out.print(a + " " + action + " " + b + " = ");
+        if (result % 1 == 0) {
+            System.out.println((int) result);
+        } else {
+            System.out.println(result);
+        }
     }
 
     private static int pow(double a, double b) {

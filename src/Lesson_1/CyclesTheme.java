@@ -143,15 +143,15 @@ public class CyclesTheme {
 
         System.out.printf("%5s%11s", "Dec", "Char\n");
 
-        for (int j = 1; j < 48; j++) {
-            if (j % 2 != 0) {
-                System.out.printf("%5s%10c%n", j, j);
+        for (int i = 1; i < 48; i++) {
+            if (i % 2 != 0) {
+                System.out.printf("%5s%10c%n", i, i);
             }
         }
 
-        for (int j = 97; j < 123; j++) {
-            if (j % 2 == 0) {
-                System.out.printf("%5s%10c%n", j, j);
+        for (int i = 97; i < 123; i++) {
+            if (i % 2 == 0) {
+                System.out.printf("%5s%10c%n", i, i);
             }
         }
 
@@ -177,14 +177,15 @@ public class CyclesTheme {
 
         initialNumber = 123123;
         copyInitialNumber = initialNumber;
-        int sumLeftHalf = 0, sumRightHalf, n = 0;
+        int sumLeftHalf = 0, sumRightHalf, counter = 0;
 
         for (sumRightHalf = 0; copyInitialNumber > 0; copyInitialNumber /= 10) {
-            n++;
-            if (n <= 3) {
-                sumRightHalf = sumRightHalf + copyInitialNumber % 10;
+            counter++;
+            int remainder = copyInitialNumber % 10;
+            if (counter <= 3) {
+                sumRightHalf = sumRightHalf + remainder;
             } else {
-                sumLeftHalf = sumLeftHalf + copyInitialNumber % 10;
+                sumLeftHalf = sumLeftHalf + remainder;
             }
         }
 
