@@ -2,19 +2,21 @@ package Lesson_2;
 
 public class WolfTest {
 
-//    3. Что такое объект
+    //    4. Инкапсуляция: геттеры/сеттеры
     public static void main(String[] args) {
         Wolf wolf = new Wolf();
 
-        wolf.gender = "male";
-        wolf.name = "Bob";
-        wolf.weight = 120;
-        wolf.age = 14;
+        wolf.setGender("male");
+        wolf.setName("Bob");
+        wolf.setColor("Red");
+        wolf.setWeight(120);
+        wolf.setAge(14);
 
-        System.out.println("Gender = " + wolf.gender);
-        System.out.println("Name = " + wolf.name);
-        System.out.println("Weight = " + wolf.weight);
-        System.out.println("Age = " + wolf.age);
+        System.out.println("Gender = " + wolf.getGender());
+        System.out.println("Name = " + wolf.getName());
+        System.out.println("Color = " + wolf.getColor());
+        System.out.println("Weight = " + wolf.getWeight());
+        System.out.println("Age = " + wolf.getAge());
 
         wolf.go();
         wolf.sit();
