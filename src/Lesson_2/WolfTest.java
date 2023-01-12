@@ -2,7 +2,6 @@ package Lesson_2;
 
 public class WolfTest {
 
-    //    4. Инкапсуляция: геттеры/сеттеры
     public static void main(String[] args) {
         Wolf wolf = new Wolf();
 

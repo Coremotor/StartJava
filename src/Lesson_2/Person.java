@@ -1,7 +1,6 @@
 package Lesson_2;
 
 public class Person {
-//    2. Что такое класс
     String gender = "male";
     String name = "Bob";
     int height = 180;
