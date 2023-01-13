@@ -1,19 +1,19 @@
 package Lesson_2;
 
-public class Jaeger {
+public class Jagger {
     private String name;
     private int height;
     private int weight;
     private int countKilledKaiju;
 
-    public Jaeger() {
+    public Jagger() {
         this.name = "Robot";
         this.height = 100;
         this.weight = 20;
         this.countKilledKaiju = 0;
     }
 
-    public Jaeger(String name, int height, int weight) {
+    public Jagger(String name, int height, int weight) {
         this.name = name;
         this.height = height;
         this.weight = weight;

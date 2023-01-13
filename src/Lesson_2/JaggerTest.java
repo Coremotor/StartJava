@@ -1,9 +1,9 @@
 package Lesson_2;
 
-public class JaegerTest {
+public class JaggerTest {
 
     public static void main(String[] args) {
-        Jaeger jagger1 = new Jaeger();
+        Jagger jagger1 = new Jagger();
         jagger1.setName("Gypsy Danger");
         System.out.println(jagger1.getName());
         System.out.println("Height = " + jagger1.getHeight());
@@ -15,7 +15,7 @@ public class JaegerTest {
         System.out.println(jagger1.getName() + " killed Kaiju count = " + jagger1.getCountKilledKaiju());
         System.out.println();
 
-        Jaeger jagger2 = new Jaeger("Striker Eureka", 150, 200);
+        Jagger jagger2 = new Jagger("Striker Eureka", 150, 200);
         System.out.println(jagger2.getName());
         System.out.println("Height = " + jagger2.getHeight());
         System.out.println("Weight = " + jagger2.getWeight());

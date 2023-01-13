@@ -7,26 +7,6 @@ public class Wolf {
     private int weight;
     private int age = 20;
 
-    public void go() {
-        System.out.println("Идет");
-    }
-
-    public void sit() {
-        System.out.println("Сидит");
-    }
-
-    public void run() {
-        System.out.println("Бежит");
-    }
-
-    public void howl() {
-        System.out.println("Воет");
-    }
-
-    public void hunt() {
-        System.out.println("Охотится");
-    }
-
     public String getGender() {
         return gender;
     }
@@ -69,5 +49,25 @@ public class Wolf {
         } else {
             this.age = age;
         }
+    }
+
+    public void go() {
+        System.out.println("Идет");
+    }
+
+    public void sit() {
+        System.out.println("Сидит");
+    }
+
+    public void run() {
+        System.out.println("Бежит");
+    }
+
+    public void howl() {
+        System.out.println("Воет");
+    }
+
+    public void hunt() {
+        System.out.println("Охотится");
     }
 }
