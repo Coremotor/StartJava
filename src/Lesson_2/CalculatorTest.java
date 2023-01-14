@@ -20,10 +20,20 @@ public class CalculatorTest {
                 System.out.println("Введите второе число:");
                 double b = scanner.nextDouble();
 
-                calculator.calculate(a, b, action);
+                double result = calculator.calculate(a, b, action);
+                printResult(a,action, b, result);
             }
             System.out.println("Хотите продолжить вычисления? [yes/no]:");
             answer = scanner.next();
+        }
+    }
+
+    private static void printResult(double a, char action, double b, double result) {
+        System.out.print(a + " " + action + " " + b + " = ");
+        if (result % 1 == 0) {
+            System.out.println((int) result);
+        } else {
+            System.out.println(result);
         }
     }
 }

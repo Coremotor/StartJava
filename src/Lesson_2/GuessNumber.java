@@ -4,8 +4,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GuessNumber {
-    Random random = new Random();
-    Scanner scanner = new Scanner(System.in);
     private final Player player1;
     private final Player player2;
 
@@ -15,34 +13,34 @@ public class GuessNumber {
     }
 
     public void startGame() {
-        int secretNumber = random.nextInt(1, 100);
-        int player1Number, player2Number;
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        int secretNumber = random.nextInt(1, 10);
         String player1Name = player1.getName();
         String player2Name = player2.getName();
 
         do {
-            System.out.println(player1Name + "Введите число:");
-            player1Number = scanner.nextInt();
-            if (secretNumber != player1Number) {
-                if (secretNumber < player1Number) {
-                    printNumberMoreMgs(player1Number, player1Name);
-                } else {
-                    printNumberLessMgs(player1Number, player1Name);
-                }
-
-                System.out.println(player2Name + "Введите число:");
-                player2Number = scanner.nextInt();
-                if (secretNumber == player2Number) {
-                    printWinMgs(player2Name);
-                    return;
-                } else if (secretNumber < player2Number) {
-                    printNumberMoreMgs(player2Number, player2Name);
-                } else {
-                    printNumberLessMgs(player2Number, player2Name);
-                }
-            } else {
+            System.out.println(player1Name + " введите число:");
+            int playerNumber = scanner.nextInt();
+            if (secretNumber == playerNumber) {
                 printWinMgs(player1Name);
-                return;
+                break;
+            } else if (secretNumber < playerNumber) {
+                printNumberMoreMgs(playerNumber, player1Name);
+            } else {
+                printNumberLessMgs(playerNumber, player1Name);
+            }
+
+            System.out.println(player2Name + " введите число:");
+            playerNumber = scanner.nextInt();
+            if (secretNumber == playerNumber) {
+                printWinMgs(player2Name);
+                break;
+            } else if (secretNumber < playerNumber) {
+                printNumberMoreMgs(playerNumber, player2Name);
+            } else {
+                printNumberLessMgs(playerNumber, player2Name);
             }
         } while (true);
     }
