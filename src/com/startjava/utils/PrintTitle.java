@@ -1,4 +1,4 @@
-package Utils;
+package com.startjava.utils;
 
 public class PrintTitle {
     public static void printTitle(String title) {

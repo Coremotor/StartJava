@@ -1,4 +1,4 @@
-package Lesson_2;
+package com.startjava.lesson_2_3.robot;
 
 public class Jagger {
     private String name;

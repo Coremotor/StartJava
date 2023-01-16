@@ -1,6 +1,6 @@
-package Lesson_1;
+package com.startjava.lesson_1.base;
 
-import Utils.PrintTitle;
+import com.startjava.utils.PrintTitle;
 
 import java.util.Random;
 

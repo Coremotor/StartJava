@@ -1,4 +1,4 @@
-package Lesson_2;
+package com.startjava.lesson_2_3.guess;
 
 public class Player {
     private final String name;
