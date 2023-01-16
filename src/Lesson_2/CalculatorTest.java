@@ -21,7 +21,7 @@ public class CalculatorTest {
                 double b = scanner.nextDouble();
 
                 double result = calculator.calculate(a, b, action);
-                printResult(a,action, b, result);
+                printResult(a, action, b, result);
             }
             System.out.println("Хотите продолжить вычисления? [yes/no]:");
             answer = scanner.next();

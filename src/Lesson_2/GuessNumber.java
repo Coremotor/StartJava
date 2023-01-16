@@ -26,7 +26,8 @@ public class GuessNumber {
             if (secretNumber == playerNumber) {
                 printWinMgs(player1Name);
                 break;
-            } else if (secretNumber < playerNumber) {
+            }
+            if (secretNumber < playerNumber) {
                 printNumberMoreMgs(playerNumber, player1Name);
             } else {
                 printNumberLessMgs(playerNumber, player1Name);
@@ -37,7 +38,8 @@ public class GuessNumber {
             if (secretNumber == playerNumber) {
                 printWinMgs(player2Name);
                 break;
-            } else if (secretNumber < playerNumber) {
+            }
+            if (secretNumber < playerNumber) {
                 printNumberMoreMgs(playerNumber, player2Name);
             } else {
                 printNumberLessMgs(playerNumber, player2Name);

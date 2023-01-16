@@ -2,7 +2,7 @@ package Lesson_2;
 
 public class Calculator {
     public double calculate(double a, double b, char action) {
-        double result = switch (action) {
+        return switch (action) {
             case '+' -> a + b;
             case '-' -> a - b;
             case '*' -> a * b;
@@ -11,8 +11,6 @@ public class Calculator {
             case '%' -> a % b;
             default -> throw new IllegalStateException("Неопознанное действие: " + action);
         };
-
-        return result;
     }
 
     private int pow(double a, double b) {
