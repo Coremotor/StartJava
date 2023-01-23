@@ -1,6 +1,4 @@
-package com.startjava.lesson_2_3.robot;
-
-import com.startjava.lesson_2_3.robot.Jagger;
+package com.startjava.lesson_2_3_4.robot;
 
 public class JaggerTest {
 
