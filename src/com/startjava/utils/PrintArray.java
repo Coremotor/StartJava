@@ -9,6 +9,14 @@ public class PrintArray {
         System.out.println();
     }
 
+    public static void printStringArray(String[] array) {
+        for (String number :
+                array) {
+            System.out.print(number + ", ");
+        }
+        System.out.println();
+    }
+
     public static void printDoubleArray(double[] array) {
         for (int i = 0; i < array.length; i++) {
             System.out.printf("%.5s %s", array[i], " ");
