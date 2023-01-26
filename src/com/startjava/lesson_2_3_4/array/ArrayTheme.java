@@ -14,10 +14,10 @@ public class ArrayTheme {
         System.out.println("Init array: ");
         PrintArray.printIntArray(numbers);
 
-        for (int i = len - 1, j = 0; i >= len / 2; i--, j++) {
-            int temp = numbers[j];
-            numbers[j] = numbers[i];
-            numbers[i] = temp;
+        for (int i = 0; i < len; i++) {
+            int temp = numbers[i];
+            numbers[i] = numbers[--len];
+            numbers[len] = temp;
         }
 
         System.out.println("Reverse array: ");
@@ -116,27 +116,29 @@ public class ArrayTheme {
 
         PrintTitle.printTitle("6. Сдвиг элементов массива");
 
-        String[] initArray = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        String[] srcStrings = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
         len = 0;
-        for (String string : initArray) {
+        for (String string : srcStrings) {
             if (!string.isBlank()) {
                 len++;
             }
         }
 
-        String[] changedArray = new String[len];
-        len = initArray.length;
+        String[] destStrings = new String[len];
+        len = srcStrings.length;
         for (int i = 0, j = 0; i < len; i++) {
-            int position = 0;
-            while ((!initArray[i].isBlank()) && (i < len - 1)) {
-                position++;
+            int countCopyStrings = 0;
+            while ((!srcStrings[i].isBlank()) && (i < len - 1)) {
+                countCopyStrings++;
                 i++;
             }
-            System.arraycopy(initArray, i - position, changedArray, j, position);
-            j += position;
+            if (countCopyStrings > 0) {
+                System.arraycopy(srcStrings, i - countCopyStrings, destStrings, j, countCopyStrings);
+            }
+            j += countCopyStrings;
         }
 
-        PrintArray.printStringArray(initArray);
-        PrintArray.printStringArray(changedArray);
+        PrintArray.printStringArray(srcStrings);
+        PrintArray.printStringArray(destStrings);
     }
 }
