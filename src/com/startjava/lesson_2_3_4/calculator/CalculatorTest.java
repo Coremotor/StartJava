@@ -5,25 +5,23 @@ import java.util.Scanner;
 public class CalculatorTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Calculator calculator = new Calculator();
 
         String answer = "yes";
 
         while (!answer.equals("no")) {
             if (answer.equals("yes")) {
-                System.out.println("Введите математическое выражение:");
-                String expression = scanner.next();
-                String[] expressionArray = expression.split("");
+                System.out.println("Введите математическое выражение через пробел:");
+                String expression = scanner.nextLine();
 
-                int a = Integer.parseInt(expressionArray[0]);
-                char action = expressionArray[1].charAt(0);
-                int b = Integer.parseInt(expressionArray[2]);
-
-                double result = calculator.calculate(a, action, b);
-                printResult(expression, result);
+                try {
+                    double result = Calculator.calculate(expression);
+                    printResult(expression, result);
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
             }
             System.out.println("Хотите продолжить вычисления? [yes/no]:");
-            answer = scanner.next();
+            answer = scanner.nextLine();
         }
     }
 
