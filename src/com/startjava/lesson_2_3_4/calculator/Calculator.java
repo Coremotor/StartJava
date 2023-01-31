@@ -3,11 +3,11 @@ package com.startjava.lesson_2_3_4.calculator;
 public class Calculator {
 
     static public double calculate(String expression) {
-        String[] expressionArray = expression.split(" ");
+        String[] partsExpression = expression.split(" ");
 
-        double a = parseNumber(expressionArray[0]);
-        char action = expressionArray[1].charAt(0);
-        double b = parseNumber(expressionArray[2]);
+        double a = validNumber(partsExpression[0]);
+        char action = partsExpression[1].charAt(0);
+        double b = validNumber(partsExpression[2]);
 
         if (a < 1 || b < 1) {
             throw new IllegalArgumentException("Операнды должны быть положительным");
@@ -24,7 +24,7 @@ public class Calculator {
         };
     }
 
-    private static double parseNumber(String number) {
+    private static double validNumber(String number) {
         double result;
 
         try {
