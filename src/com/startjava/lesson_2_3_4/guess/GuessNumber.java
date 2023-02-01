@@ -1,6 +1,7 @@
 package com.startjava.lesson_2_3_4.guess;
 
-import java.util.Arrays;
+import com.startjava.utils.PrintTitle;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,71 +14,69 @@ public class GuessNumber {
         this.player2 = player2;
     }
 
-    public void startGame() {
+    public void start() {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        int secretNumber = random.nextInt(1, 100);
+        PrintTitle.printTitle("У каждого игрока по 10 попыток");
 
-        player1.reset();
-        player2.reset();
+        int secretNumber = random.nextInt(1, 10);
+
+        player1.clearAttempts();
+        player2.clearAttempts();
 
         do {
             System.out.println(player1.getName() + " введите число:");
             int playerNumber = scanner.nextInt();
-            player1.saveNumber(playerNumber);
+            player1.addNumber(playerNumber);
 
-            if (secretNumber == playerNumber) {
-                printWinMgs(player1, playerNumber);
-                printPlayersNumbers(player1, player2);
+            if (isGuessedRight(player1, playerNumber, secretNumber)) {
+                printPlayerNumbers(player1);
+                printPlayerNumbers(player2);
                 break;
-            }
-            if (secretNumber < playerNumber) {
-                printNumberMoreMgs(playerNumber, player1);
-            } else {
-                printNumberLessMgs(playerNumber, player1);
             }
 
             System.out.println(player2.getName() + " введите число:");
             playerNumber = scanner.nextInt();
-            player2.saveNumber(playerNumber);
+            player2.addNumber(playerNumber);
 
-            if (secretNumber == playerNumber) {
-                printWinMgs(player2, playerNumber);
-                printPlayersNumbers(player1, player2);
+            if (isGuessedRight(player2, playerNumber, secretNumber)) {
+                printPlayerNumbers(player1);
+                printPlayerNumbers(player2);
                 break;
-            }
-            if (secretNumber < playerNumber) {
-                printNumberMoreMgs(playerNumber, player2);
-            } else {
-                printNumberLessMgs(playerNumber, player2);
             }
 
             if (isAnswersCountEnds(player1) || isAnswersCountEnds(player2)) {
-                printPlayersNumbers(player1, player2);
+                printPlayerNumbers(player1);
+                printPlayerNumbers(player2);
                 break;
             }
         } while (true);
     }
 
-    private void printNumberMoreMgs(int playerNumber, Player player) {
-        System.out.println("Число " + playerNumber + " от игрока "
-                + player.getName() + " больше, чем загадал компьютер");
+    private boolean isGuessedRight(Player player, int playerNumber, int secretNumber) {
+        boolean result = false;
+        if (secretNumber == playerNumber) {
+            System.out.println("Игрок " + player.getName() + " угадал число "
+                    + playerNumber + " с " + player.getAnswerCount() + " попытки");
+            result = true;
+        } else if (secretNumber < playerNumber) {
+            System.out.println("Число " + playerNumber + " от игрока "
+                    + player.getName() + " больше, чем загадал компьютер");
+        } else {
+            System.out.println("Число " + playerNumber + " от игрока "
+                    + player.getName() + " меньше, чем загадал компьютер");
+        }
+        return result;
     }
 
-    private void printNumberLessMgs(int playerNumber, Player player) {
-        System.out.println("Число " + playerNumber + " от игрока "
-                + player.getName() + " меньше, чем загадал компьютер");
-    }
-
-    private void printWinMgs(Player player, int winNumber) {
-        System.out.println("Игрок " + player.getName() + " угадал число "
-                + winNumber + " с " + player.getAnswerCount() + " попытки");
-    }
-
-    private void printPlayersNumbers(Player player1, Player player2) {
-        System.out.println(player1.getName() + ": " + Arrays.toString(player1.getNumbers()));
-        System.out.println(player2.getName() + ": " + Arrays.toString(player2.getNumbers()));
+    private void printPlayerNumbers(Player player) {
+        System.out.print(player.getName() + ": ");
+        for (int number :
+                player.getNumbers()) {
+            System.out.print(number + " ");
+        }
+        System.out.println();
     }
 
     private boolean isAnswersCountEnds(Player player) {

@@ -1,7 +1,5 @@
 package com.startjava.lesson_2_3_4.guess;
 
-import com.startjava.utils.PrintTitle;
-
 import java.util.Scanner;
 
 public class GuessNumberTest {
@@ -11,8 +9,6 @@ public class GuessNumberTest {
 
         String answer = "yes";
 
-        PrintTitle.printTitle("У каждого игрока по 10 попыток");
-
         System.out.println("Введите имя первого игрока:");
         String name = scanner.nextLine();
         Player player1 = new Player(name);
@@ -21,11 +17,11 @@ public class GuessNumberTest {
         name = scanner.nextLine();
         Player player2 = new Player(name);
 
-        GuessNumber guessNumber = new GuessNumber(player1, player2);
+        GuessNumber game = new GuessNumber(player1, player2);
 
         while (!answer.equals("no")) {
             if (answer.equals("yes")) {
-                guessNumber.startGame();
+                game.start();
             }
             System.out.println("Хотите продолжить игру? [yes/no]:");
             answer = scanner.nextLine();
