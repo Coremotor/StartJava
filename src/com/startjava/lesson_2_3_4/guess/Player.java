@@ -20,6 +20,10 @@ public class Player {
         countAttempts++;
     }
 
+    public int getNumber() {
+        return numbers[countAttempts - 1];
+    }
+
     public int[] getNumbers() {
         return Arrays.copyOf(numbers, countAttempts);
     }

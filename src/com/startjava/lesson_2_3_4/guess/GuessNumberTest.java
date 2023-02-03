@@ -9,15 +9,7 @@ public class GuessNumberTest {
 
         String answer = "yes";
 
-        System.out.println("Введите имя первого игрока:");
-        String name = scanner.nextLine();
-        Player player1 = new Player(name);
-
-        System.out.println("Введите имя второго игрока:");
-        name = scanner.nextLine();
-        Player player2 = new Player(name);
-
-        GuessNumber game = new GuessNumber(player1, player2);
+        GuessNumber game = new GuessNumber(initPlayers());
 
         while (!answer.equals("no")) {
             if (answer.equals("yes")) {
@@ -26,5 +18,15 @@ public class GuessNumberTest {
             System.out.println("Хотите продолжить игру? [yes/no]:");
             answer = scanner.nextLine();
         }
+    }
+
+    private static Player[] initPlayers() {
+        Player[] players = new Player[2];
+        Scanner scan = new Scanner(System.in);
+        for (int i = 0; i < 2; i++) {
+            System.out.print("Игрок №" + (i + 1) + " введите имя: ");
+            players[i] = new Player(scan.nextLine());
+        }
+        return players;
     }
 }
