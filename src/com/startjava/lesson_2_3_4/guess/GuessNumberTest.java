@@ -21,9 +21,9 @@ public class GuessNumberTest {
     }
 
     private static Player[] initPlayers() {
-        Player[] players = new Player[2];
+        Player[] players = new Player[3];
         Scanner scan = new Scanner(System.in);
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < players.length; i++) {
             System.out.print("Игрок №" + (i + 1) + " введите имя: ");
             players[i] = new Player(scan.nextLine());
         }

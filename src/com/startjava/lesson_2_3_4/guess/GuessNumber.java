@@ -7,46 +7,66 @@ import java.util.Scanner;
 
 public class GuessNumber {
     private final Player[] players;
+    private int rounds = 1;
 
-    public GuessNumber(Player[] players) {
+    public GuessNumber(Player... players) {
         this.players = players;
     }
 
     public void start() {
         Random random = new Random();
+        castLots();
 
-        PrintTitle.printTitle("У каждого игрока по 10 попыток");
-
-        int secretNumber = random.nextInt(1, 100);
-
-        for (Player player : players) {
-            player.clearAttempts();
-        }
-
-        boolean loop = true;
         do {
+            PrintTitle.printTitle("Раунд №" + rounds + ". У каждого игрока по 10 попыток");
+
+            int secretNumber = random.nextInt(1, 10);
+
             for (Player player : players) {
-                if (isAttemptsEnds(player)) {
-                    loop = false;
-                    printPlayerNumbers(players);
-                    break;
-                }
-
-                sayNumber(player);
-
-                if (isGuessed(player, secretNumber)) {
-                    loop = false;
-                    printPlayerNumbers(players);
-                    break;
-                }
+                player.clearAttempts();
             }
-        } while (loop);
+
+            boolean roundIsPLaying = true;
+            do {
+                for (Player player : players) {
+                    if (isAttemptsEnds(player)) {
+                        roundIsPLaying = false;
+                        printPlayerNumbers();
+                        break;
+                    }
+
+                    while (true) {
+                        try {
+                            sayNumber(player);
+                            break;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Внимание: " + e.getMessage());
+                        }
+                    }
+
+                    if (isGuessed(player, secretNumber)) {
+                        roundIsPLaying = false;
+                        printPlayerNumbers();
+                        break;
+                    }
+                }
+            } while (roundIsPLaying);
+            rounds++;
+        } while (rounds < 4);
+
+        identifyingWinner();
+        for (Player player : players) {
+            player.clearWinCount();
+        }
+        rounds = 1;
+        System.out.println("\nGame over\n");
     }
 
     private boolean isGuessed(Player player, int secretNumber) {
         if (secretNumber == player.getNumber()) {
+            player.setWinCount();
             System.out.println("Игрок " + player.getName() + " угадал число "
-                    + player.getNumber() + " с " + player.getAnswerCount() + " попытки");
+                    + player.getNumber() + " с " + player.getAnswerCount() + " попытки\n");
             return true;
         }
 
@@ -57,9 +77,9 @@ public class GuessNumber {
         return false;
     }
 
-    private void printPlayerNumbers(Player[] players) {
+    private void printPlayerNumbers() {
         for (Player player : players) {
-            System.out.print(player.getName() + ": ");
+            System.out.print("Названные числа игроком " + player.getName() + ": ");
             for (int number : player.getNumbers()) {
                 System.out.print(number + " ");
             }
@@ -68,7 +88,7 @@ public class GuessNumber {
     }
 
     private boolean isAttemptsEnds(Player player) {
-        int ATTEMPTS_COUNT = 10;
+        int ATTEMPTS_COUNT = 3;
         if (player.getAnswerCount() == ATTEMPTS_COUNT) {
             System.out.println("У " + player.getName() + " закончились попытки");
             return true;
@@ -80,5 +100,39 @@ public class GuessNumber {
         Scanner scanner = new Scanner(System.in);
         System.out.println(player.getName() + " введите число:");
         player.addNumber(scanner.nextInt());
+    }
+
+    private void castLots() {
+        for (int i = players.length - 1; i > 1; i--) {
+            int j = (int) (Math.random() * i);
+            Player temp = players[j];
+            players[j] = players[i];
+            players[i] = temp;
+        }
+    }
+
+    private void identifyingWinner() {
+        int maxScore = 0;
+        int countWinner = 0;
+        for (Player player : players) {
+            int score = player.getWinCount();
+            if (score > maxScore) {
+                maxScore = score;
+                countWinner = 1;
+            } else if (score == maxScore) {
+                countWinner++;
+            }
+        }
+        if (countWinner == 1) {
+            System.out.print("\nПобедитель: ");
+        } else {
+            System.out.print("\nПобедители: ");
+        }
+        for (Player player : players) {
+            if (player.getWinCount() == maxScore) {
+                System.out.print(player.getName() + " ");
+            }
+        }
+        System.out.println();
     }
 }
