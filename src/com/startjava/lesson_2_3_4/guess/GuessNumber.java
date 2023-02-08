@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class GuessNumber {
     private final Player[] players;
     private int rounds = 1;
+    private final int ATTEMPTS_COUNT = 3;
 
     public GuessNumber(Player... players) {
         this.players = players;
@@ -29,7 +30,7 @@ public class GuessNumber {
             boolean roundIsPLaying = true;
             do {
                 for (Player player : players) {
-                    if (isAttemptsEnds(player)) {
+                    if (hasAttempts(player)) {
                         roundIsPLaying = false;
                         printPlayerNumbers();
                         break;
@@ -37,7 +38,7 @@ public class GuessNumber {
 
                     while (true) {
                         try {
-                            sayNumber(player);
+                            inputNumber(player);
                             break;
                         } catch (IllegalArgumentException e) {
                             System.out.println("Внимание: " + e.getMessage());
@@ -54,7 +55,7 @@ public class GuessNumber {
             rounds++;
         } while (rounds < 4);
 
-        identifyingWinner();
+        identifyWinner();
         for (Player player : players) {
             player.clearWinCount();
         }
@@ -62,18 +63,21 @@ public class GuessNumber {
         System.out.println("\nGame over\n");
     }
 
-    private boolean isGuessed(Player player, int secretNumber) {
-        if (secretNumber == player.getNumber()) {
-            player.setWinCount();
-            System.out.println("Игрок " + player.getName() + " угадал число "
-                    + player.getNumber() + " с " + player.getAnswerCount() + " попытки\n");
+
+    private void castLots() {
+        for (int i = players.length - 1; i > 1; i--) {
+            int j = (int) (Math.random() * i);
+            Player temp = players[j];
+            players[j] = players[i];
+            players[i] = temp;
+        }
+    }
+
+    private boolean hasAttempts(Player player) {
+        if (player.getAnswerCount() == ATTEMPTS_COUNT) {
+            System.out.println("У " + player.getName() + " закончились попытки");
             return true;
         }
-
-        String moreLess = secretNumber < player.getNumber() ? "больше" : "меньше";
-        System.out.println("Число " + player.getNumber() + " от игрока "
-                + player.getName() + " " + moreLess + " , чем загадал компьютер");
-
         return false;
     }
 
@@ -87,31 +91,28 @@ public class GuessNumber {
         }
     }
 
-    private boolean isAttemptsEnds(Player player) {
-        int ATTEMPTS_COUNT = 3;
-        if (player.getAnswerCount() == ATTEMPTS_COUNT) {
-            System.out.println("У " + player.getName() + " закончились попытки");
-            return true;
-        }
-        return false;
-    }
-
-    private void sayNumber(Player player) {
+    private void inputNumber(Player player) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(player.getName() + " введите число:");
         player.addNumber(scanner.nextInt());
     }
 
-    private void castLots() {
-        for (int i = players.length - 1; i > 1; i--) {
-            int j = (int) (Math.random() * i);
-            Player temp = players[j];
-            players[j] = players[i];
-            players[i] = temp;
+    private boolean isGuessed(Player player, int secretNumber) {
+        if (secretNumber == player.getNumber()) {
+            player.incrementWinCount();
+            System.out.println("Игрок " + player.getName() + " угадал число "
+                    + player.getNumber() + " с " + player.getAnswerCount() + " попытки\n");
+            return true;
         }
+
+        String moreLess = secretNumber < player.getNumber() ? "больше" : "меньше";
+        System.out.println("Число " + player.getNumber() + " от игрока "
+                + player.getName() + " " + moreLess + " , чем загадал компьютер");
+
+        return false;
     }
 
-    private void identifyingWinner() {
+    private void identifyWinner() {
         int maxScore = 0;
         int countWinner = 0;
         for (Player player : players) {
